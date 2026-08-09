@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — LoginAuthentication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="aurora-bg" aria-hidden="true"></div>
+
+  <div class="page-center">
+    <div class="auth-shell glass-card">
+      <!-- Branding panel -->
+      <aside class="auth-brand">
+        <div>
+          <div class="auth-brand-logo">
+            <span class="logo-mark" aria-hidden="true">A</span>
+            <span>LoginAuthentication</span>
+          </div>
+        </div>
+        <div class="auth-brand-copy">
+          <h2 class="font-display">Join in under a minute.</h2>
+          <p>
+            Create an account secured with bcrypt hashing and JWT sessions —
+            built to the same standard as a production SaaS sign-up flow.
+          </p>
+          <ul class="auth-brand-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Live password strength feedback
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Duplicate-email protection
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Your password is never stored in plain text
+            </li>
+          </ul>
+        </div>
+        <p class="text-faint" style="font-size: 0.78rem;">© 2026 LoginAuthentication</p>
+      </aside>
+
+      <!-- Form panel -->
+      <section class="auth-form-panel">
+        <div class="auth-heading">
+          <h1>Create your account</h1>
+          <p>Let's get you set up — it only takes a minute.</p>
+        </div>
+
+        <form id="registerForm" novalidate>
+          <div class="field-group">
+            <label class="field-label" for="fullName">Full name</label>
+            <div class="field-control">
+              <input class="field-input" type="text" id="fullName" name="fullName" placeholder="Jordan Ellis" autocomplete="name" required />
+            </div>
+            <p class="field-error" id="fullNameError"></p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="email">Email address</label>
+            <div class="field-control">
+              <input class="field-input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <p class="field-error" id="emailError"></p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="password">Password</label>
+            <div class="field-control">
+              <input class="field-input" type="password" id="password" name="password" placeholder="Create a strong password" autocomplete="new-password" required />
+              <button type="button" class="field-toggle" data-toggle-password data-target="password" aria-label="Show password">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+            </div>
+            <div class="strength-meter" id="strengthMeter">
+              <div class="strength-track">
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+              </div>
+              <span class="strength-label"></span>
+            </div>
+            <p class="field-hint">At least 8 characters, with upper &amp; lower case, a number, and a symbol.</p>
+            <p class="field-error" id="passwordError"></p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="confirmPassword">Confirm password</label>
+            <div class="field-control">
+              <input class="field-input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" required />
+              <button type="button" class="field-toggle" data-toggle-password data-target="confirmPassword" aria-label="Show password">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+            </div>
+            <p class="field-error" id="confirmPasswordError"></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="registerSubmit">
+            <span class="btn-label">Create account</span>
+          </button>
+        </form>
+
+        <p class="auth-footer-link">Already have an account? <a class="link-accent" href="login.html">Log in</a></p>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/validate.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

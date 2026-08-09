@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — LoginAuthentication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="sidebar-backdrop"></div>
+
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="auth-brand-logo">
+        <span class="logo-mark" aria-hidden="true">A</span>
+        <span>LoginAuth</span>
+      </div>
+
+      <nav class="app-nav" aria-label="Primary">
+        <a class="app-nav-link" href="dashboard.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Dashboard
+        </a>
+        <a class="app-nav-link" href="profile.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Profile
+        </a>
+      </nav>
+
+      <div class="app-sidebar-footer">
+        <div class="divider-line"></div>
+        <div class="user-chip" style="margin-bottom: 16px;">
+          <span class="avatar" data-user-initials></span>
+          <div>
+            <p class="user-chip-name" data-user-name></p>
+            <p class="user-chip-email" data-user-email></p>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm btn-block" data-logout type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Log out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="app-main">
+      <header class="app-topbar">
+        <button class="menu-toggle" data-sidebar-toggle aria-label="Toggle navigation menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <span class="eyebrow">Dashboard</span>
+        <span id="accountStatusPill" class="status-pill"></span>
+      </header>
+
+      <main class="app-content">
+        <h1 id="welcomeHeading" class="font-display" style="font-size: 1.7rem; margin-bottom: 6px;">Welcome back</h1>
+        <p class="text-muted" style="margin-bottom: 28px;">Here's what's happening with your account.</p>
+
+        <!-- Stat cards -->
+        <div class="content-grid" style="margin-bottom: 24px;">
+          <div class="glass-card stat-card">
+            <p class="stat-label">Member since</p>
+            <p class="stat-value" id="statMemberSince">—</p>
+          </div>
+          <div class="glass-card stat-card">
+            <p class="stat-label">Successful logins</p>
+            <p class="stat-value" id="statLoginCount">—</p>
+          </div>
+          <div class="glass-card stat-card">
+            <p class="stat-label">Account status</p>
+            <p class="stat-value" id="statStatus">—</p>
+          </div>
+        </div>
+
+        <div class="content-grid" style="grid-template-columns: 1.1fr 1fr; align-items: start;">
+          <!-- Account information -->
+          <section class="glass-card panel">
+            <div class="panel-header">
+              <div class="user-chip">
+                <span class="avatar avatar--lg" id="avatarInitialsLg"></span>
+                <div>
+                  <p class="user-chip-name" style="font-size: 1rem;">Account information</p>
+                  <p class="text-faint" style="font-size: 0.78rem;">Your core account details</p>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; justify-content: space-between; gap: 12px;">
+                <span class="text-faint" style="font-size: 0.85rem;">Full name</span>
+                <span id="infoFullName" style="font-weight: 600;"></span>
+              </div>
+              <div style="display: flex; justify-content: space-between; gap: 12px;">
+                <span class="text-faint" style="font-size: 0.85rem;">Email</span>
+                <span id="infoEmail" style="font-family: var(--font-mono); font-size: 0.85rem;"></span>
+              </div>
+              <div style="display: flex; justify-content: space-between; gap: 12px;">
+                <span class="text-faint" style="font-size: 0.85rem;">Joined</span>
+                <span id="infoJoined"></span>
+              </div>
+              <div style="display: flex; justify-content: space-between; gap: 12px;">
+                <span class="text-faint" style="font-size: 0.85rem;">Last updated</span>
+                <span id="infoUpdated"></span>
+              </div>
+            </div>
+            <div class="divider-line"></div>
+            <a href="profile.html" class="btn btn-ghost btn-sm btn-block">Edit profile</a>
+          </section>
+
+          <!-- Login history -->
+          <section class="glass-card panel">
+            <div class="panel-header">
+              <h3>Recent login activity</h3>
+              <span class="avatar" id="avatarInitials" style="width: 34px; height: 34px; font-size: 0.8rem;"></span>
+            </div>
+            <ul class="history-list" id="loginHistoryList"></ul>
+            <div class="empty-state" id="loginHistoryEmpty" hidden>
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg>
+              <p>No login activity recorded yet.</p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/validate.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app-shell.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoginAuthentication — Secure Account Access</title>
+  <meta name="description" content="A production-quality authentication system built with Node.js, Express, MongoDB, and JWT." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="aurora-bg" aria-hidden="true"></div>
+
+  <div class="page-center">
+    <main class="glass-card" style="max-width: 620px; padding: 56px 44px; text-align: center;">
+      <p class="eyebrow" style="margin-bottom: 18px;">Secure by design</p>
+
+      <div class="auth-brand-logo" style="justify-content: center; margin-bottom: 22px;">
+        <span class="logo-mark" aria-hidden="true">A</span>
+        <span>LoginAuthentication</span>
+      </div>
+
+      <h1 class="font-display" style="font-size: 2.1rem; margin-bottom: 14px;">
+        Authentication, done the way it should be.
+      </h1>
+      <p class="text-muted" style="max-width: 46ch; margin: 0 auto 32px; line-height: 1.65;">
+        Hashed passwords, short-lived JWTs, and a refresh-token flow that quietly keeps
+        people signed in — wrapped in an interface that feels like a real product, not a
+        homework assignment.
+      </p>
+
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="login.html" class="btn btn-primary" style="width: auto; padding: 0 32px;">Log in</a>
+        <a href="register.html" class="btn btn-ghost" style="width: auto; padding: 0 32px;">Create an account</a>
+      </div>
+
+      <div class="divider-line" style="margin: 36px 0 24px;"></div>
+
+      <ul class="auth-brand-features" style="margin-top: 0; align-items: center;">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Passwords hashed with bcrypt — never stored in plain text
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Short-lived JWTs with automatic silent refresh
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Rate-limited endpoints and centralized error handling
+        </li>
+      </ul>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    // If the visitor already has a valid session, skip straight to the dashboard.
+    App.api.redirectIfAuthenticated();
+  </script>
+</body>
+</html>

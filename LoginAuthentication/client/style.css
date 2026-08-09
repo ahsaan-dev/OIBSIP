@@ -1,0 +1,1139 @@
+/* =====================================================================
+   style.css — Shared design system for the LoginAuthentication client
+   ---------------------------------------------------------------------
+   Table of contents:
+     1. Design tokens
+     2. Reset & base
+     3. Typography
+     4. Layout: aurora background + containers
+     5. Glass card
+     6. Buttons
+     7. Forms (inputs, password toggle, strength meter, status pill)
+     8. Auth split-panel layout (login / register / forgot / reset)
+     9. App shell (sidebar + topbar) for dashboard / profile
+    10. Toast notifications
+    11. Loading spinner
+    12. Small components (avatar, badges, history list, empty states)
+    13. Responsive breakpoints
+    14. Accessibility helpers
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. Design tokens
+   Signature: a dark "aurora mesh" gradient world with a single violet
+   accent, paired with a warm magenta glow used only for the strongest
+   moments (primary buttons, focus states, the aurora itself).
+--------------------------------------------------------------------- */
+:root {
+  /* Color */
+  --bg-deep: #0b0c1e;
+  --bg-mid: #171335;
+  --bg-panel: #14132c;
+  --accent-violet: #7c5cfc;
+  --accent-violet-dim: #5b3fd6;
+  --accent-magenta: #c042ff;
+  --accent-cyan: #45e8d1;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg-strong: rgba(255, 255, 255, 0.09);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --text-primary: #f5f3ff;
+  --text-muted: #a6a0c7;
+  --text-faint: #746e94;
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.14);
+  --error: #fb7185;
+  --error-bg: rgba(251, 113, 133, 0.14);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.14);
+
+  /* Type */
+  --font-display: 'Sora', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Layout */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 20px 60px rgba(6, 6, 20, 0.45);
+  --shadow-lift: 0 12px 30px rgba(124, 92, 252, 0.25);
+  --sidebar-width: 264px;
+  --topbar-height: 72px;
+  --transition-fast: 160ms ease;
+  --transition-med: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------------------------------------------------------------------
+   2. Reset & base
+--------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--bg-deep);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------------------
+   3. Typography
+--------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-faint {
+  color: var(--text-faint);
+}
+
+/* ---------------------------------------------------------------------
+   4. Layout: aurora background + containers
+   The signature element — a slow-drifting mesh of soft radial blobs
+   that lives behind every page in the app. Purely decorative, so it
+   is hidden from assistive tech and paused for reduced-motion users.
+--------------------------------------------------------------------- */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at 15% 20%, var(--bg-mid), var(--bg-deep) 60%);
+}
+
+.aurora-bg::before,
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+.aurora-bg::before {
+  top: -20%;
+  left: -10%;
+  background: var(--accent-violet);
+}
+
+.aurora-bg::after {
+  bottom: -25%;
+  right: -15%;
+  background: var(--accent-magenta);
+  animation-delay: -11s;
+  animation-duration: 26s;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(6vw, 8vh) scale(1.15);
+  }
+}
+
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ---------------------------------------------------------------------
+   5. Glass card
+--------------------------------------------------------------------- */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------------------------------------------------------------------
+   6. Buttons
+--------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn-primary {
+  width: 100%;
+  color: #0b0c1e;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet) 55%, var(--accent-magenta));
+  background-size: 160% 160%;
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-primary:hover {
+  background-position: 100% 0;
+  box-shadow: 0 16px 38px rgba(124, 92, 252, 0.38);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+}
+
+.btn-ghost:hover {
+  background: var(--glass-bg-strong);
+  border-color: var(--accent-violet);
+}
+
+.btn-danger {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+}
+
+.btn-danger:hover {
+  background: rgba(251, 113, 133, 0.22);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 0.85rem;
+}
+
+.btn .spinner {
+  display: none;
+}
+
+.btn.is-loading .btn-label {
+  visibility: hidden;
+}
+
+.btn.is-loading .spinner {
+  display: inline-flex;
+  position: absolute;
+}
+
+.btn {
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------
+   7. Forms
+--------------------------------------------------------------------- */
+.field-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.field-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 16px;
+  background: rgba(11, 12, 30, 0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.field-input::placeholder {
+  color: var(--text-faint);
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 0 4px rgba(124, 92, 252, 0.18);
+}
+
+.field-input.has-error {
+  border-color: var(--error);
+}
+
+.field-input.has-success {
+  border-color: var(--success);
+}
+
+.field-input[type='password'] {
+  padding-right: 46px;
+}
+
+.field-toggle {
+  position: absolute;
+  right: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-faint);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.field-toggle:hover {
+  color: var(--text-primary);
+  background: var(--glass-bg-strong);
+}
+
+.field-hint {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--error);
+  display: none;
+}
+
+.field-error.is-visible {
+  display: block;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.checkbox-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-violet);
+  cursor: pointer;
+}
+
+.link-accent {
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+}
+
+/* Password strength meter */
+.strength-meter {
+  margin-top: 10px;
+  display: none;
+}
+
+.strength-meter.is-visible {
+  display: block;
+}
+
+.strength-track {
+  display: flex;
+  gap: 6px;
+  height: 6px;
+  margin-bottom: 8px;
+}
+
+.strength-segment {
+  flex: 1;
+  border-radius: var(--radius-pill);
+  background: var(--glass-border);
+  transition: background var(--transition-med);
+}
+
+.strength-segment.is-active[data-level='weak'] {
+  background: var(--error);
+}
+
+.strength-segment.is-active[data-level='fair'] {
+  background: var(--warning);
+}
+
+.strength-segment.is-active[data-level='good'] {
+  background: var(--accent-cyan);
+}
+
+.strength-segment.is-active[data-level='strong'] {
+  background: var(--success);
+}
+
+/* Status pill — the recurring component used for password strength,
+   account status, and toast type indicators, so the same visual
+   language shows up everywhere the app needs a small status signal. */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.status-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-pill--weak {
+  color: var(--error);
+  background: var(--error-bg);
+}
+
+.status-pill--fair {
+  color: var(--warning);
+  background: var(--warning-bg);
+}
+
+.status-pill--good {
+  color: var(--accent-cyan);
+  background: rgba(69, 232, 209, 0.14);
+}
+
+.status-pill--strong {
+  color: var(--success);
+  background: var(--success-bg);
+}
+
+.status-pill--active {
+  color: var(--success);
+  background: var(--success-bg);
+}
+
+.status-pill--suspended {
+  color: var(--error);
+  background: var(--error-bg);
+}
+
+/* ---------------------------------------------------------------------
+   8. Auth split-panel layout
+--------------------------------------------------------------------- */
+.auth-shell {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.auth-brand {
+  position: relative;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(160deg, rgba(124, 92, 252, 0.22), rgba(192, 66, 255, 0.12) 60%, transparent);
+  border-right: 1px solid var(--glass-border);
+}
+
+.auth-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.auth-brand-logo .logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0b0c1e;
+}
+
+.auth-brand-copy h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.auth-brand-copy p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 34ch;
+}
+
+.auth-brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.auth-brand-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.auth-brand-features li svg {
+  flex-shrink: 0;
+  color: var(--accent-cyan);
+}
+
+.auth-form-panel {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form-panel form {
+  width: 100%;
+}
+
+.auth-heading {
+  margin-bottom: 28px;
+}
+
+.auth-heading h1 {
+  font-size: 1.65rem;
+  margin-bottom: 6px;
+}
+
+.auth-heading p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-footer-link {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  margin: 20px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--glass-border);
+}
+
+/* ---------------------------------------------------------------------
+   9. App shell (sidebar + topbar) — dashboard / profile
+--------------------------------------------------------------------- */
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+}
+
+.app-sidebar {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--glass-border);
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.app-nav-link svg {
+  flex-shrink: 0;
+}
+
+.app-nav-link:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+}
+
+.app-nav-link.is-active {
+  background: linear-gradient(135deg, rgba(124, 92, 252, 0.24), rgba(69, 232, 209, 0.12));
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.app-sidebar-footer {
+  margin-top: auto;
+}
+
+.app-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-topbar {
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  background: rgba(11, 12, 30, 0.7);
+  backdrop-filter: blur(16px);
+  z-index: 5;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  color: var(--text-primary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-content {
+  flex: 1;
+  padding: 32px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.panel {
+  padding: 26px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+
+.panel-header h3 {
+  font-size: 1.05rem;
+}
+
+/* ---------------------------------------------------------------------
+   10. Toast notifications
+--------------------------------------------------------------------- */
+.toast-stack {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-soft);
+  animation: toast-in var(--transition-med);
+}
+
+.toast.is-leaving {
+  animation: toast-out var(--transition-fast) forwards;
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  to {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.toast-body p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.toast-body strong {
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 2px;
+}
+
+.toast--success .toast-icon {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.toast--error .toast-icon {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.toast--warning .toast-icon {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.toast--info .toast-icon {
+  background: rgba(124, 92, 252, 0.16);
+  color: var(--accent-violet);
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  margin-left: auto;
+  padding: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   11. Loading spinner
+--------------------------------------------------------------------- */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(11, 12, 30, 0.25);
+  border-top-color: #0b0c1e;
+  animation: spin 0.7s linear infinite;
+}
+
+.spinner--light {
+  border: 2.5px solid rgba(245, 243, 255, 0.2);
+  border-top-color: var(--text-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  transition: opacity var(--transition-med);
+}
+
+.page-loader[hidden] {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------
+   12. Small components
+--------------------------------------------------------------------- */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0b0c1e;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+  flex-shrink: 0;
+}
+
+.avatar--lg {
+  width: 72px;
+  height: 72px;
+  font-size: 1.4rem;
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-chip-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.user-chip-email {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-card .stat-label {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.stat-card .stat-value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  font-size: 0.82rem;
+}
+
+.history-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-faint);
+}
+
+.empty-state svg {
+  margin: 0 auto 14px;
+  opacity: 0.6;
+}
+
+.divider-line {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 24px 0;
+}
+
+/* ---------------------------------------------------------------------
+   13. Responsive breakpoints
+--------------------------------------------------------------------- */
+
+/* Tablet: tighten the auth panels, keep the two-column app shell */
+@media (max-width: 1024px) {
+  .auth-shell {
+    max-width: 720px;
+  }
+
+  .auth-brand,
+  .auth-form-panel {
+    padding: 36px 30px;
+  }
+
+  .app-content {
+    padding: 26px;
+  }
+}
+
+/* Mobile: single column everywhere, larger touch targets */
+@media (max-width: 768px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .auth-brand {
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+    padding: 28px 24px;
+  }
+
+  .auth-brand-copy p {
+    max-width: none;
+  }
+
+  .auth-brand-features {
+    display: none;
+  }
+
+  .auth-form-panel {
+    padding: 32px 24px;
+  }
+
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    inset: 0 25% 0 auto;
+    z-index: 50;
+    width: min(280px, 78vw);
+    transform: translateX(100%);
+    transition: transform var(--transition-med);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .app-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .app-topbar {
+    padding: 0 18px;
+  }
+
+  .app-content {
+    padding: 20px 16px 40px;
+  }
+
+  .field-input,
+  .btn {
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-center {
+    padding: 14px;
+  }
+
+  .auth-heading h1 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   14. Accessibility helpers
+--------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-backdrop.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 6, 20, 0.6);
+    z-index: 40;
+  }
+}

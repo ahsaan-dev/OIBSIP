@@ -1,0 +1,42 @@
+{
+  "name": "login-authentication-system",
+  "version": "1.0.0",
+  "description": "A production-quality full-stack authentication system built with Node.js, Express, MongoDB, and JWT — featuring registration, login, protected routes, profile management, and password reset.",
+  "main": "server/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "seed": "node server/utils/seed.js"
+  },
+  "keywords": [
+    "authentication",
+    "jwt",
+    "bcrypt",
+    "mongodb",
+    "express",
+    "nodejs",
+    "login-system"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0",
+    "morgan": "^1.10.0",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

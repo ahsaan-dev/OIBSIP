@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. A.P.J. Abdul Kalam — A Tribute to the Missile Man of India</title>
+<meta name="description" content="A tribute to Dr. A.P.J. Abdul Kalam — scientist, teacher, and 11th President of India — tracing his flight path from a fishing town to the frontier of space.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= SKIP LINK ================= -->
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a href="#hero" class="nav__brand">A.P.J.<span>Kalam</span></a>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__menu" id="navMenu">
+      <li><a href="#about" class="nav__link">Life</a></li>
+      <li><a href="#timeline" class="nav__link">Flight Path</a></li>
+      <li><a href="#achievements" class="nav__link">Honours</a></li>
+      <li><a href="#quote" class="nav__link">Words</a></li>
+      <li><a href="#gallery" class="nav__link">Facets</a></li>
+      <li><a href="#facts" class="nav__link">Facts</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="hero__sky" aria-hidden="true">
+      <div class="hero__stars"></div>
+      <svg class="hero__trajectory" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path id="heroPath" class="trajectory-path" d="M -50 650 C 150 650, 200 500, 320 430 C 480 340, 520 250, 620 160 C 700 90, 780 60, 1050 20" />
+        <circle class="trajectory-craft" r="6">
+          <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#heroPath"></mpath>
+          </animateMotion>
+        </circle>
+      </svg>
+    </div>
+
+    <div class="hero__content">
+      <p class="eyebrow">1931 — 2015 · Rameswaram to Rashtrapati Bhavan</p>
+      <h1 class="hero__name">Avul Pakir Jainulabdeen<br>Abdul Kalam</h1>
+      <p class="hero__title">Aerospace Scientist · Missile Man of India · 11th President of India</p>
+      <p class="hero__tagline">"Dream, dream, dream. Dreams transform into thoughts, and thoughts result in action."</p>
+      <a href="#about" class="hero__cta">Begin the journey</a>
+    </div>
+
+    <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+      <span class="scroll-indicator__label">Scroll</span>
+      <span class="scroll-indicator__line"></span>
+    </a>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <p class="section-eyebrow">Life</p>
+      <h2 class="section-title">A boy from the shoreline who reached for the sky</h2>
+      <p class="section-lede">Born on 15 October 1931 in the temple town of Rameswaram, Tamil Nadu, Kalam grew up in a family of modest means — his father owned a small boat, his mother ran the household — and sold newspapers as a boy to contribute to the family income. What he lacked in privilege, he made up for in an unshakable curiosity about flight and the stars.</p>
+
+      <div class="about__grid">
+        <article class="about-card reveal">
+          <span class="about-card__index">Early Life</span>
+          <h3>A student of physics, then flight</h3>
+          <p>He studied physics at St. Joseph's College, Tiruchirappalli, before training in aerospace engineering at the Madras Institute of Technology — a decision that set the direction for the rest of his working life.</p>
+        </article>
+
+        <article class="about-card reveal">
+          <span class="about-card__index">Career</span>
+          <h3>From satellites to missiles</h3>
+          <p>He joined India's defence research establishment and later its space programme, helping build the SLV-III rocket that placed the Rohini satellite in orbit. He went on to lead the Integrated Guided Missile Development Programme, shaping the Agni and Prithvi missiles and earning the name "Missile Man of India."</p>
+        </article>
+
+        <article class="about-card reveal">
+          <span class="about-card__index">Public Service</span>
+          <h3>The people's President</h3>
+          <p>In 2002 he was elected the 11th President of India, a role in which his warmth, humility, and habit of speaking directly to students earned him the affectionate title "the People's President."</p>
+        </article>
+
+        <article class="about-card reveal">
+          <span class="about-card__index">Legacy</span>
+          <h3>A teacher above all titles</h3>
+          <p>After his presidency he returned to what he loved most — teaching. He continued lecturing, writing, and mentoring young minds until his final day, leaving behind a legacy less about rank and more about relentless curiosity and service.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TIMELINE ================= -->
+  <section class="timeline-section" id="timeline">
+    <div class="section-inner">
+      <p class="section-eyebrow">Flight Path</p>
+      <h2 class="section-title">A trajectory, not a straight line</h2>
+      <p class="section-lede">Every life has a launch, a climb, and a course correction. Here is the arc of his — from a small-town classroom to the frontier of India's space and missile programmes, and finally to the highest office in the land.</p>
+
+      <div class="timeline">
+        <svg class="timeline__spine" viewBox="0 0 100 1400" preserveAspectRatio="none" aria-hidden="true">
+          <path id="timelinePath" class="trajectory-path trajectory-path--spine" d="M 50 0 C 50 150, 50 150, 50 300 C 50 450, 50 450, 50 600 C 50 750, 50 750, 50 900 C 50 1050, 50 1050, 50 1200 C 50 1300, 50 1300, 50 1400" />
+        </svg>
+
+        <ol class="timeline__list">
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1931</span>
+              <h3 class="timeline__event">Born in Rameswaram</h3>
+              <p>Born into a family of modest means on the island town of Rameswaram, Tamil Nadu — a childhood shaped by the sea, curiosity, and quiet hardship.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1958</span>
+              <h3 class="timeline__event">Graduates in aerospace engineering</h3>
+              <p>Completes his aerospace engineering studies at the Madras Institute of Technology and joins India's aeronautical research establishment soon after.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1969</span>
+              <h3 class="timeline__event">Moves to India's space programme</h3>
+              <p>Transfers to the newly forming Indian Space Research Organisation, taking on project leadership for the country's first satellite launch vehicle.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1980</span>
+              <h3 class="timeline__event">SLV-III reaches orbit</h3>
+              <p>The SLV-III rocket, under his project direction, successfully places the Rohini satellite into orbit — a defining early milestone for Indian spaceflight.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1980s–90s</span>
+              <h3 class="timeline__event">Leads the missile programme</h3>
+              <p>Heads the Integrated Guided Missile Development Programme, steering the development of the Agni and Prithvi missiles and earning the title "Missile Man of India."</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1997</span>
+              <h3 class="timeline__event">Awarded the Bharat Ratna</h3>
+              <p>Receives India's highest civilian honour in recognition of his contributions to science and the nation.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">1998</span>
+              <h3 class="timeline__event">Chief Scientific Adviser</h3>
+              <p>Serves as Chief Scientific Adviser to the Government of India during the Pokhran-II nuclear tests, a period that placed him at the centre of national attention.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">2002</span>
+              <h3 class="timeline__event">Elected 11th President of India</h3>
+              <p>Takes office as President, quickly becoming known for visiting schools, answering students' letters personally, and speaking plainly about ambition and effort.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">2007</span>
+              <h3 class="timeline__event">Returns to teaching and writing</h3>
+              <p>Completes his presidential term and returns to the classroom and the page, authoring books and lecturing at institutions across the country.</p>
+            </div>
+          </li>
+
+          <li class="timeline__item reveal">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <span class="timeline__year">2015</span>
+              <h3 class="timeline__event">Passes away mid-lecture</h3>
+              <p>On 27 July 2015, he collapses and passes away while delivering a lecture at IIM Shillong — teaching, fittingly, until his very last moment.</p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACHIEVEMENTS ================= -->
+  <section class="achievements" id="achievements">
+    <div class="section-inner">
+      <p class="section-eyebrow">Honours</p>
+      <h2 class="section-title">Recognition earned, rarely sought</h2>
+
+      <div class="achievements__grid">
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🏅</div>
+          <h3>Bharat Ratna, 1997</h3>
+          <p>India's highest civilian award, for his contribution to science and technology.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🚀</div>
+          <h3>Missile Man of India</h3>
+          <p>Earned for leading the Integrated Guided Missile Development Programme.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🛰️</div>
+          <h3>SLV-III / Rohini Success</h3>
+          <p>Project leadership behind India placing its first satellite into orbit.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🏛️</div>
+          <h3>President of India</h3>
+          <p>Served as the 11th President of India from 2002 to 2007.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">📚</div>
+          <h3>Author of Several Books</h3>
+          <p>Wrote works including <em>Wings of Fire</em>, <em>Ignited Minds</em>, and <em>India 2020</em>.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🎓</div>
+          <h3>Honorary Doctorates</h3>
+          <p>Received numerous honorary doctorates from universities across India and abroad.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🥈</div>
+          <h3>Padma Vibhushan, 1990</h3>
+          <p>India's second-highest civilian award, honouring his scientific service.</p>
+        </article>
+
+        <article class="achievement-card reveal">
+          <div class="achievement-card__icon" aria-hidden="true">🥉</div>
+          <h3>Padma Bhushan, 1981</h3>
+          <p>India's third-highest civilian award, an early recognition of his work.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUOTE ================= -->
+  <section class="quote-section" id="quote">
+    <div class="quote-section__glow" aria-hidden="true"></div>
+    <div class="section-inner quote-section__inner">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote class="quote-text">
+        You have to dream before your dreams can come true.
+      </blockquote>
+      <p class="quote-attribution">— Dr. A.P.J. Abdul Kalam</p>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY / FACETS ================= -->
+  <section class="gallery" id="gallery">
+    <div class="section-inner">
+      <p class="section-eyebrow">Facets</p>
+      <h2 class="section-title">More than one title fits in a single life</h2>
+      <p class="section-lede">A note on images: this template renders each facet of his life as an illustrated motif rather than a photograph, so you can freely add licensed or public-domain portraits to <code>assets/images/</code> without any layout changes. See the README for guidance.</p>
+
+      <div class="gallery__grid">
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--rocket" aria-hidden="true"></div>
+          <figcaption>The Scientist — years spent among launch vehicles and missile telemetry.</figcaption>
+        </figure>
+
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--veena" aria-hidden="true"></div>
+          <figcaption>The Musician — he unwound by playing the veena, a South Indian string instrument.</figcaption>
+        </figure>
+
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--book" aria-hidden="true"></div>
+          <figcaption>The Author — his books carried his ideas to millions of young readers.</figcaption>
+        </figure>
+
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--podium" aria-hidden="true"></div>
+          <figcaption>The Statesman — the 11th President of India, known for speaking plainly with students.</figcaption>
+        </figure>
+
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--chalk" aria-hidden="true"></div>
+          <figcaption>The Teacher — a role he returned to, and never truly left.</figcaption>
+        </figure>
+
+        <figure class="gallery-card reveal">
+          <div class="gallery-card__art gallery-card__art--star" aria-hidden="true"></div>
+          <figcaption>The Dreamer — famous for urging students to dream, and to work for it.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FACTS ================= -->
+  <section class="facts" id="facts">
+    <div class="section-inner">
+      <p class="section-eyebrow">Facts</p>
+      <h2 class="section-title">Small details, well remembered</h2>
+
+      <div class="facts__grid">
+        <div class="fact-card reveal"><span class="fact-card__num">01</span><p>Widely known as the "People's President" for his warmth and accessibility.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">02</span><p>Played the veena, a traditional South Indian stringed instrument, to relax.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">03</span><p>Never married, and lived a famously simple, frugal life throughout.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">04</span><p>Sold newspapers as a boy in Rameswaram to help support his family.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">05</span><p>Read widely across religious texts and championed pluralism and tolerance.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">06</span><p>Authored or co-authored more than a dozen books during his lifetime.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">07</span><p>Delivered his final lecture at IIM Shillong, on the subject of livable planets.</p></div>
+        <div class="fact-card reveal"><span class="fact-card__num">08</span><p>Continued visiting schools and colleges to speak with students until his last days.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="section-inner site-footer__inner">
+    <p class="site-footer__tribute">In memory of Dr. A.P.J. Abdul Kalam (1931–2015) — scientist, teacher, and dreamer who taught a generation to reach for the sky.</p>
+    <div class="site-footer__meta">
+      <p>Built with HTML, CSS &amp; JavaScript as a tribute page project.</p>
+      <p>&copy; <span id="year"></span> Tribute Page Project. For educational purposes only.</p>
+    </div>
+  </div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
