@@ -1,12 +1,3 @@
-# OIBSIP
-
-Absolutely. Since this is the **main `OIBSIP` repository**, the README should introduce the internship, explain that you've completed **Web Development & Designing — Level 2**, and provide a clean overview of all four projects.
-
-I also checked the uploaded project ZIPs, so I can make the project descriptions match what you actually have. Your Login Authentication project is a full-stack Node.js project, while the other three are HTML/CSS/JavaScript projects.
-
-Use this as the **`README.md` in the root of your `OIBSIP` repository**:
-
-````markdown
 # 🚀 OIBSIP — Oasis Infobyte Internship Projects
 
 ![Oasis Infobyte](https://img.shields.io/badge/Oasis%20Infobyte-Internship-blue)
